@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     #
     'app.agenda_soap',
+    'app.programacion_sala'
 ]
 
 MIDDLEWARE = [
@@ -79,10 +80,10 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'bd_isis4',
-        'USER': 'postgres',
-        'PASSWORD': '2009',
-        'HOST': 'localhost',
+        'NAME': 'bd_isis',
+        'USER': 'admpgsql',
+        'PASSWORD': '9+8+7ab*',
+        'HOST': 'kronos.clinicasantaisabel.com',
         'PORT': '5432',
     }
 }

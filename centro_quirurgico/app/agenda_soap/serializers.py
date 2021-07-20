@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from .models import Camas
+from .models import ProgramacionSOAP
 
-class CamasSerializer(serializers.ModelSerializer):    
+class ProgramacionSOAPSerializer(serializers.ModelSerializer):    
     class Meta:
-        model = Camas
+        model = ProgramacionSOAP
         fields = '__all__'
