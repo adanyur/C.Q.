@@ -5,3 +5,4 @@ class ProgramacionSOAPSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProgramacionSOAP
         fields = '__all__'
+        read_only_fields = fields

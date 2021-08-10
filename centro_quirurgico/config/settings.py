@@ -83,7 +83,7 @@ DATABASES = {
         'NAME': 'bd_isis',
         'USER': 'admpgsql',
         'PASSWORD': '9+8+7ab*',
-        'HOST': 'kronos.clinicasantaisabel.com',
+        'HOST': 'PgSQL2.clinicasantaisabel.com',
         'PORT': '5432',
     }
 }
