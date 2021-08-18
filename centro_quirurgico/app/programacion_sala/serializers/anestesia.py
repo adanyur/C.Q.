@@ -4,5 +4,5 @@ from ..models.anestesia import *
 class AnestesiaSerializers(serializers.ModelSerializer):
     class Meta:
         model = Anestesia
-        fields = ('hora','descripcion','estado')
+        fields = ('an_tipane','an_nombre','an_estado')
         read_only_fields = fields
