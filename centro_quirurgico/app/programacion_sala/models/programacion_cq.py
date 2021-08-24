@@ -1,0 +1,53 @@
+from django.db import models
+
+
+class ProgramacionCQ(models.Model):
+
+    cq_numope = models.CharField(max_length=10,primary_key=True,default='0')
+    sa_codsal = models.CharField(max_length=2,null=True, blank=True)
+    cq_fecha  = models.DateTimeField(auto_now_add=True,null=True, blank=True)
+    cq_hoinpr = models.DateTimeField(auto_now_add=True,null=True, blank=True)
+    cq_hofipr = models.DateTimeField(auto_now_add=True,null=True, blank=True)
+    cq_indrep = models.CharField(max_length=1,default='0',null=True, blank=True)
+    cq_hoinre = models.DateTimeField(auto_now_add=True,null=True, blank=True)
+    cq_hofire = models.DateTimeField(auto_now_add=True,null=True, blank=True)
+    cq_hoinej = models.DateTimeField(auto_now_add=True,null=True, blank=True)
+    cq_hofiej = models.DateTimeField(auto_now_add=True,null=True, blank=True)
+    se_codigo = models.CharField(max_length=3,null=True, blank=True)
+    cq_codiqx = models.CharField(max_length=6,null=True, blank=True)
+    an_tipane = models.CharField(max_length=2,null=True, blank=True)
+    cq_cuenta = models.CharField(max_length=10,null=True, blank=True)
+    cq_numhis = models.CharField(max_length=10,null=True, blank=True)
+    cq_tipcon = models.CharField(max_length=5,null=True, blank=True)
+    cq_cama   = models.CharField(max_length=6,null=True, blank=True)
+    cq_estado = models.CharField(max_length=1,default='1',null=True, blank=True)
+    cq_indfac = models.CharField(max_length=1,default='0',null=True, blank=True)
+    cq_paciente = models.CharField(max_length=99,null=True, blank=True)
+    cq_pedido = models.CharField(max_length=199,null=True, blank=True)
+    cq_usuario = models.CharField(max_length=15,null=True, blank=True)
+    cq_fecpro = models.DateTimeField(auto_now_add=True,null=True, blank=True)
+    cq_edad = models.CharField(max_length=2,null=True, blank=True)
+    cq_glosa_repro = models.CharField(max_length=200,null=True, blank=True)
+    cq_num_petito = models.CharField(max_length=10,null=True, blank=True)
+    cq_es_emer = models.CharField(max_length=1,default='0',null=True, blank=True)
+    cq_orden_cq = models.CharField(max_length=1,default='0',null=True, blank=True)
+    # cq_usua_mod_est =,null=True, blank=True 
+    cq_fecha_mod_est = models.DateTimeField(auto_now_add=True,null=True, blank=True)
+    cq_orden_rqx = models.CharField(max_length=1,default='0',null=True, blank=True)
+    cq_numsema = models.CharField(max_length=10,null=True, blank=True)
+    cq_areapre = models.CharField(max_length=2,null=True, blank=True)
+    cq_codiqx2 = models.CharField(max_length=6,null=True, blank=True)
+    # cq_estd_suspendida =,null=True, blank=True 
+    cq_es_adelan = models.CharField(max_length=1,default='0',null=True, blank=True)
+    cq_enfer = models.CharField(max_length=1,default='0',null=True, blank=True)
+    # cq_antibio =,null=True, blank=True 
+    # cq_kg =,null=True, blank=True 
+    cq_btb = models.CharField(max_length=1,default='0',null=True, blank=True)
+    cq_reing = models.CharField(max_length=1,default='0',null=True, blank=True)
+    cq_estancia = models.CharField(max_length=2,null=True, blank=True)
+    cq_codiqx3 = models.CharField(max_length=6,null=True, blank=True)
+    cq_motivo_suspen = models.CharField(max_length=200,null=True, blank=True)
+    # cq_hg =,null=True, blank=True ,null=True, blank=True
+    class Meta:
+        managed = False
+        db_table = 'programacion_cq'
