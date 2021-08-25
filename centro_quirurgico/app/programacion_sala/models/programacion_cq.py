@@ -1,9 +1,8 @@
 from django.db import models
 
 
-class ProgramacionCQ(models.Model):
-
-    cq_numope = models.CharField(max_length=10,primary_key=True,default='0')
+class ProgramacionModel(models.Model):
+    cq_numope = models.CharField(max_length=10,primary_key=True)
     sa_codsal = models.CharField(max_length=2,null=True, blank=True)
     cq_fecha  = models.DateTimeField(auto_now_add=True,null=True, blank=True)
     cq_hoinpr = models.DateTimeField(auto_now_add=True,null=True, blank=True)
@@ -48,6 +47,25 @@ class ProgramacionCQ(models.Model):
     cq_codiqx3 = models.CharField(max_length=6,null=True, blank=True)
     cq_motivo_suspen = models.CharField(max_length=200,null=True, blank=True)
     # cq_hg =,null=True, blank=True ,null=True, blank=True
+
     class Meta:
         managed = False
         db_table = 'programacion_cq'
+
+
+
+class ProgramacionDetalleModel(models.Model):    
+    sa_codsal = models.CharField(max_length=2)
+    cq_numero = models.CharField(max_length=2)
+    se_codigo = models.CharField(max_length=3,null=True, blank=True)
+    cq_codiqx = models.CharField(max_length=6,null=True, blank=True)
+    ar_codare = models.CharField(max_length=2,null=True, blank=True)
+    pl_codper = models.CharField(max_length=8,null=True, blank=True)
+    cq_estado = models.CharField(max_length=1,null=True, blank=True)
+    cq_observ = models.CharField(max_length=100,null=True, blank=True)    
+    cq_numope = models.ForeignKey(ProgramacionModel,related_name='programacion_detalle',on_delete=models.CASCADE)
+
+    class Meta:
+        # managed = False
+        # unique_together = ['cq_numope']
+        db_table = 'programacion_cq_d'

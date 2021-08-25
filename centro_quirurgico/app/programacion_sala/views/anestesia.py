@@ -8,7 +8,6 @@ from ..serializers.anestesia import *
 
 @api_view(['GET'])
 def anestesia_api_view(request):
-     
      if request.method == 'GET':
          anestesia = Anestesia.objects.all().filter(an_estado='1')
          Anestesia_serializers = AnestesiaSerializers(anestesia,many=True)
