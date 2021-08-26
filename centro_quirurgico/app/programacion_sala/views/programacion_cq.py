@@ -14,19 +14,30 @@ def programaciones_api_view(request):
     data = ProgramacionModel.objects.aggregate(cq_numope=Max('cq_numope'))
     #Se genera el correlativo de numero de operacion
     numeroOperacion = str(int(data['cq_numope']) + 1).rjust(10,'0')
+
     if request.method == 'POST':
         request.data['cq_numope'] = numeroOperacion
-        serializer = ProgramacionCQSerializer(data = request.data)
+        serializer = ProgramacionSerializer(data = request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors)
 
 
-@api_view(['GET'])
+@api_view(['GET','PUT'])
 def programacion_detalle_api_view(request,pk):
-    data = ProgramacionModel.objects.filter(cq_numope=pk).first()
-    if request.method == 'GET':
-        programacion_serializer = ProgramacionSerializer(instance=data)
-        return Response(programacion_serializer.data)
+    programacion_data = ProgramacionModel.objects.filter(cq_numope=pk).first()
 
+    if programacion_data :
+        if request.method == 'GET':
+
+            programacion_serializer = ProgramacionSerializer(programacion_data)
+            return Response(programacion_serializer.data)
+
+        if request.method == 'PUT':
+            programacion_serializer = ProgramacionSerializer(programacion_data,data = request.data)
+            if programacion_serializer.is_valid():
+                programacion_serializer.save()
+                return Response({'message':'Se actualizo correctamente!!'})
+            return Response(programacion_serializer.errors)
+    return Response({'message':'No se encontro datos'})

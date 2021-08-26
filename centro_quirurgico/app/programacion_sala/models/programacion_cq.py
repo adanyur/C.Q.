@@ -2,16 +2,16 @@ from django.db import models
 
 
 class ProgramacionModel(models.Model):
-    cq_numope = models.CharField(max_length=10,primary_key=True)
+    cq_numope = models.CharField(primary_key=True,max_length=10)
     sa_codsal = models.CharField(max_length=2,null=True, blank=True)
-    cq_fecha  = models.DateTimeField(auto_now_add=True,null=True, blank=True)
-    cq_hoinpr = models.DateTimeField(auto_now_add=True,null=True, blank=True)
-    cq_hofipr = models.DateTimeField(auto_now_add=True,null=True, blank=True)
+    cq_fecha  = models.DateTimeField(null=True, blank=True)
+    cq_hoinpr = models.DateTimeField(null=True, blank=True)
+    cq_hofipr = models.DateTimeField(null=True, blank=True)
     cq_indrep = models.CharField(max_length=1,default='0',null=True, blank=True)
-    cq_hoinre = models.DateTimeField(auto_now_add=True,null=True, blank=True)
-    cq_hofire = models.DateTimeField(auto_now_add=True,null=True, blank=True)
-    cq_hoinej = models.DateTimeField(auto_now_add=True,null=True, blank=True)
-    cq_hofiej = models.DateTimeField(auto_now_add=True,null=True, blank=True)
+    cq_hoinre = models.DateTimeField(null=True, blank=True)
+    cq_hofire = models.DateTimeField(null=True, blank=True)
+    cq_hoinej = models.DateTimeField(null=True, blank=True)
+    cq_hofiej = models.DateTimeField(null=True, blank=True)
     se_codigo = models.CharField(max_length=3,null=True, blank=True)
     cq_codiqx = models.CharField(max_length=6,null=True, blank=True)
     an_tipane = models.CharField(max_length=2,null=True, blank=True)
@@ -54,18 +54,19 @@ class ProgramacionModel(models.Model):
 
 
 
-class ProgramacionDetalleModel(models.Model):    
+class ProgramacionDetalleModel(models.Model):
+    # id = models.CharField(db_column='cq_numero', max_length=10, primary_key=True)
     sa_codsal = models.CharField(max_length=2)
-    cq_numero = models.CharField(max_length=2)
-    se_codigo = models.CharField(max_length=3,null=True, blank=True)
-    cq_codiqx = models.CharField(max_length=6,null=True, blank=True)
-    ar_codare = models.CharField(max_length=2,null=True, blank=True)
-    pl_codper = models.CharField(max_length=8,null=True, blank=True)
-    cq_estado = models.CharField(max_length=1,null=True, blank=True)
+    cq_numero = models.CharField(max_length=2,primary_key=True)
+    cq_codpar = models.CharField(max_length=2, null=True, blank=True)
+    se_codigo = models.CharField(max_length=3, null=True, blank=True)
+    cq_codiqx = models.CharField(max_length=6, null=True, blank=True)
+    ar_codare = models.CharField(max_length=2, null=True, blank=True)
+    pl_codper = models.CharField(max_length=8, null=True, blank=True)
+    cq_estado = models.CharField(max_length=1, null=True, blank=True)
     cq_observ = models.CharField(max_length=100,null=True, blank=True)    
-    cq_numope = models.ForeignKey(ProgramacionModel,related_name='programacion_detalle',on_delete=models.CASCADE)
+    cq_numope = models.ForeignKey(ProgramacionModel, related_name='programacion_detalle', on_delete=models.CASCADE, db_column='cq_numope',null=True, blank=True)
 
     class Meta:
-        # managed = False
-        # unique_together = ['cq_numope']
+        managed = False
         db_table = 'programacion_cq_d'
