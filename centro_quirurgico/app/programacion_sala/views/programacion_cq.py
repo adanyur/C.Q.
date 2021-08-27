@@ -20,7 +20,7 @@ def programaciones_api_view(request):
         serializer = ProgramacionSerializer(data = request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data)
+            return Response({'message':'Se registro correctamente!!'})
         return Response(serializer.errors)
 
 
@@ -30,10 +30,9 @@ def programacion_detalle_api_view(request,pk):
 
     if programacion_data :
         if request.method == 'GET':
-
             programacion_serializer = ProgramacionSerializer(programacion_data)
+            print(programacion_serializer)
             return Response(programacion_serializer.data)
-
         if request.method == 'PUT':
             programacion_serializer = ProgramacionSerializer(programacion_data,data = request.data)
             if programacion_serializer.is_valid():

@@ -54,10 +54,10 @@ class ProgramacionModel(models.Model):
 
 
 
-class ProgramacionDetalleModel(models.Model):
-    # id = models.CharField(db_column='cq_numero', max_length=10, primary_key=True)
+class ProgramacionParticipantesModel(models.Model):
+    id = models.IntegerField(primary_key=True)
     sa_codsal = models.CharField(max_length=2)
-    cq_numero = models.CharField(max_length=2,primary_key=True)
+    cq_numero = models.CharField(max_length=2)
     cq_codpar = models.CharField(max_length=2, null=True, blank=True)
     se_codigo = models.CharField(max_length=3, null=True, blank=True)
     cq_codiqx = models.CharField(max_length=6, null=True, blank=True)
@@ -70,3 +70,14 @@ class ProgramacionDetalleModel(models.Model):
     class Meta:
         managed = False
         db_table = 'programacion_cq_d'
+
+
+class ProgramacionEquiposMedicosModel(models.Model):
+    id = models.IntegerField(primary_key=True)
+    de_codequi = models.CharField(max_length=3)
+    de_uso = models.CharField(max_length=1,default='1')
+    de_numope = models.ForeignKey(ProgramacionModel, related_name='equipos_medicos', on_delete=models.CASCADE, db_column='de_numope',null=True, blank=True)
+
+    class Meta:
+        managed = False
+        db_table = 'det_prog_equi_cq'
