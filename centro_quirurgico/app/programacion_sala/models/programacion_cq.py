@@ -64,8 +64,8 @@ class ProgramacionParticipantesModel(models.Model):
     ar_codare = models.CharField(max_length=2, null=True, blank=True)
     pl_codper = models.CharField(max_length=8, null=True, blank=True)
     cq_estado = models.CharField(max_length=1, null=True, blank=True)
-    cq_observ = models.CharField(max_length=100,null=True, blank=True)    
-    cq_numope = models.ForeignKey(ProgramacionModel, related_name='programacion_detalle', on_delete=models.CASCADE, db_column='cq_numope',null=True, blank=True)
+    cq_observ = models.CharField(max_length=100,null=True, blank=True)
+    cq_numope = models.ForeignKey(ProgramacionModel, related_name='participantes', on_delete=models.CASCADE, db_column='cq_numope',null=True, blank=True)
 
     class Meta:
         managed = False
@@ -74,9 +74,9 @@ class ProgramacionParticipantesModel(models.Model):
 
 class ProgramacionEquiposMedicosModel(models.Model):
     id = models.IntegerField(primary_key=True)
-    de_codequi = models.CharField(max_length=3)
-    de_uso = models.CharField(max_length=1,default='1')
-    de_numope = models.ForeignKey(ProgramacionModel, related_name='equipos_medicos', on_delete=models.CASCADE, db_column='de_numope',null=True, blank=True)
+    de_codequi = models.CharField(max_length=3,null=True, blank=True)
+    de_uso = models.CharField(max_length=1,default='1',null=True, blank=True)
+    de_numope = models.ForeignKey(ProgramacionModel, related_name='equiposMedicos', on_delete=models.CASCADE, db_column='de_numope',null=True, blank=True)
 
     class Meta:
         managed = False

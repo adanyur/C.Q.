@@ -30,8 +30,7 @@ def programacion_detalle_api_view(request,pk):
 
     if programacion_data :
         if request.method == 'GET':
-            programacion_serializer = ProgramacionSerializer(programacion_data)
-            print(programacion_serializer)
+            programacion_serializer = ProgramacionSerializer(programacion_data)            
             return Response(programacion_serializer.data)
         if request.method == 'PUT':
             programacion_serializer = ProgramacionSerializer(programacion_data,data = request.data)
