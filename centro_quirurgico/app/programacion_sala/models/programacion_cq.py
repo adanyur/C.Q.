@@ -30,23 +30,23 @@ class ProgramacionModel(models.Model):
     cq_num_petito = models.CharField(max_length=10,null=True, blank=True)
     cq_es_emer = models.CharField(max_length=1,default='0',null=True, blank=True)
     cq_orden_cq = models.CharField(max_length=1,default='0',null=True, blank=True)
-    # cq_usua_mod_est =,null=True, blank=True 
+    cq_usua_mod_est = models.CharField(max_length=15,null=True, blank=True)
     cq_fecha_mod_est = models.DateTimeField(auto_now_add=True,null=True, blank=True)
     cq_orden_rqx = models.CharField(max_length=1,default='0',null=True, blank=True)
     cq_numsema = models.CharField(max_length=10,null=True, blank=True)
     cq_areapre = models.CharField(max_length=2,null=True, blank=True)
     cq_codiqx2 = models.CharField(max_length=6,null=True, blank=True)
-    # cq_estd_suspendida =,null=True, blank=True 
+    cq_estd_suspendida = models.CharField(max_length=1,null=True, blank=True)
     cq_es_adelan = models.CharField(max_length=1,default='0',null=True, blank=True)
     cq_enfer = models.CharField(max_length=1,default='0',null=True, blank=True)
-    # cq_antibio =,null=True, blank=True 
-    # cq_kg =,null=True, blank=True 
+    cq_antibio = models.CharField(max_length=50,default='0',null=True, blank=True)
+    cq_kg = models.CharField(max_length=2,null=True, blank=True)
     cq_btb = models.CharField(max_length=1,default='0',null=True, blank=True)
     cq_reing = models.CharField(max_length=1,default='0',null=True, blank=True)
     cq_estancia = models.CharField(max_length=2,null=True, blank=True)
     cq_codiqx3 = models.CharField(max_length=6,null=True, blank=True)
     cq_motivo_suspen = models.CharField(max_length=200,null=True, blank=True)
-    # cq_hg =,null=True, blank=True ,null=True, blank=True
+    cq_hg = models.CharField(max_length=5,null=True, blank=True)
 
     class Meta:
         managed = False

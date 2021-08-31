@@ -1,8 +1,6 @@
 from rest_framework import serializers
 from ..models.programacion_cq import *
 
-
-
 class ProgramacionDetalleSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProgramacionParticipantesModel
@@ -23,7 +21,16 @@ class ProgramacionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ProgramacionModel
-        fields = ('cq_numope','sa_codsal','cq_estancia','equiposMedicos','participantes')
+        fields = (
+                'cq_numope', 'sa_codsal', 'cq_fecha', 'cq_hoinpr', 'cq_hofipr', 'cq_indrep', 'cq_hoinre', 
+                'cq_hofire', 'cq_hoinej', 'cq_hofiej', 'se_codigo', 'cq_codiqx', 'an_tipane', 'cq_cuenta', 
+                'cq_numhis', 'cq_tipcon', 'cq_cama', 'cq_estado', 'cq_indfac', 'cq_paciente', 'cq_pedido', 
+                'cq_usuario', 'cq_fecpro', 'cq_edad', 'cq_glosa_repro', 'cq_num_petito', 'cq_es_emer', 
+                'cq_orden_cq', 'cq_usua_mod_est', 'cq_fecha_mod_est', 'cq_orden_rqx', 'cq_numsema', 
+                'cq_areapre', 'cq_codiqx2', 'cq_estd_suspendida', 'cq_es_adelan', 'cq_enfer', 'cq_antibio', 
+                'cq_kg', 'cq_btb', 'cq_reing', 'cq_estancia', 'cq_codiqx3', 'cq_motivo_suspen', 'cq_hg',
+                'equiposMedicos','participantes'
+                 )
 
     #create
     def create(self, validated_data):
@@ -34,12 +41,10 @@ class ProgramacionSerializer(serializers.ModelSerializer):
         programacion = ProgramacionModel.objects.create(**validated_data)
 
         '''Participantes '''
-        
         for participantes in participantes:
             ProgramacionParticipantesModel.objects.create(cq_numope=programacion, **participantes)
-
-        '''Equipos Medicos'''
         
+        '''Equipos Medicos'''
         for equiposMedicos in equiposMedicos:
             ProgramacionEquiposMedicosModel.objects.create(de_numope=programacion, **equiposMedicos)
         return programacion
