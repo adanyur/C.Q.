@@ -18,7 +18,7 @@ from django.urls import path
 from django.conf.urls import url, include 
 
 urlpatterns = [
-    path('', admin.site.urls),
+    # path('', admin.site.urls),
     url(r'^',include('app.agenda_soap.urls')),
     url(r'^',include('app.programacion_sala.urls')),
 ]

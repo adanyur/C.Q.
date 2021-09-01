@@ -9,3 +9,4 @@ class Anestesia(models.Model):
     class Meta:
         managed = False
         db_table = 'tipo_anestesia'
+        ordering = ['an_nombre']

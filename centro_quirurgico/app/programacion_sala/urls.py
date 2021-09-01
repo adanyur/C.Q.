@@ -10,11 +10,10 @@ from .views.participantes import *
 
 urlpatterns = [
     url(r'^anestesia', anestesia_api_view),
-    url(r'^intervencion', intervencion_api_view),
+    url(r'^intervencion/(?P<pk>\d+)/$', intervencion_api_view),
     url(r'^sala', disponibilidad_salas_api_view),
     url(r'^personales', personales_api_view),
     url(r'^programaciones', programaciones_api_view),    
     url(r'^programacion/(?P<pk>\d+)/$',programacion_detalle_api_view),
-    url(r'^participantes',participantes_api_view)
-    
+    url(r'^participantes/(?P<pk>\d+)/$',participantes_api_view)
 ]

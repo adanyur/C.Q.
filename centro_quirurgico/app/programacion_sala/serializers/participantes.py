@@ -6,16 +6,12 @@ class TipoParticipantesSerializers(serializers.ModelSerializer):
     class Meta:
         model = TipoParticipanteModel
         fields = '__all__'
-        # extra_kwargs = {'id': {'validators': []},}
-
-
+        read_only_fields = fields
 
 class ParticipantesSerializers(serializers.ModelSerializer):
-    descripcion = TipoParticipantesSerializers()
-    # descripcion = TipoParticipantesSerializers(many=True)
-    
+    descripcion = serializers.StringRelatedField()
+
     class Meta:
         model = ParticipantesModel
         fields = ('cq_codiqx','cq_numero','cq_codpar','descripcion')
-        # fields = ('cq_codiqx','cq_numero','cq_codpar')
-    
+        read_only_fields = fields

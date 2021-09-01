@@ -14,8 +14,7 @@ class Personales(models.Model):
     class Meta:
         managed=False
         db_table = 'personal'
-
-
+        ordering = ['pl_nombre']
 
 
 class Medicos(models.Model):
@@ -23,9 +22,9 @@ class Medicos(models.Model):
     me_nombres = models.CharField(max_length=80)
     me_estado  = models.CharField(max_length=1)
     
-
     class Meta:
         managed=False
         db_table = 'medicos'
+        ordering = ['me_nombres']
 
 

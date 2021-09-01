@@ -10,3 +10,4 @@ class Intervencion(models.Model):
     class Meta:
         managed = False
         db_table = 'intervenciones_cq'
+        ordering = ['cq_nomint']
