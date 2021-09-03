@@ -14,9 +14,10 @@ def programaciones_api_view(request):
     data = ProgramacionModel.objects.aggregate(cq_numope=Max('cq_numope'))
     #Se genera el correlativo de numero de operacion
     numeroOperacion = str(int(data['cq_numope']) + 1).rjust(10,'0')
-
     if request.method == 'POST':
         request.data['cq_numope'] = numeroOperacion
+        for data in request.data['participantes']:
+            data['sa_codsal']=request.data['sa_codsal']          
         serializer = ProgramacionSerializer(data = request.data)
         if serializer.is_valid():
             serializer.save()

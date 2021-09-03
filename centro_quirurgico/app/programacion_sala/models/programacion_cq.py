@@ -55,8 +55,8 @@ class ProgramacionModel(models.Model):
 
 
 class ProgramacionParticipantesModel(models.Model):
-    id = models.IntegerField(primary_key=True)
-    sa_codsal = models.CharField(max_length=2)
+    id = models.AutoField(primary_key=True)
+    sa_codsal = models.CharField(max_length=2, null=True, blank=True)
     cq_numero = models.CharField(max_length=2)
     cq_codpar = models.CharField(max_length=2, null=True, blank=True)
     se_codigo = models.CharField(max_length=3, null=True, blank=True)
@@ -73,7 +73,7 @@ class ProgramacionParticipantesModel(models.Model):
 
 
 class ProgramacionEquiposMedicosModel(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     de_codequi = models.CharField(max_length=3,null=True, blank=True)
     de_uso = models.CharField(max_length=1,default='1',null=True, blank=True)
     de_numope = models.ForeignKey(ProgramacionModel, related_name='equiposMedicos', on_delete=models.CASCADE, db_column='de_numope',null=True, blank=True)

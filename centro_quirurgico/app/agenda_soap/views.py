@@ -9,11 +9,13 @@ from .serializers import ProgramacionSOAPSerializer
 
 @api_view(['GET'])
 def soap_api_view(request,pk):
-        
         if request.method == 'GET':                
             fecha = datetime.strptime(pk, "%Y-%m-%d").strftime("%d/%m/%Y")
             data = ProgramacionSOAP.objects.raw("SELECT * FROM cq_c_programacion('{0}')".format(fecha))
-            ProgramacionSOAP_serializer = ProgramacionSOAPSerializer(data,many=True)
-            return Response(ProgramacionSOAP_serializer.data)
+
+            if data : 
+                ProgramacionSOAP_serializer = ProgramacionSOAPSerializer(data,many=True)
+                return Response(ProgramacionSOAP_serializer.data)
+            return Response({"message":"No hay programacion para la fecha seleccionada"})
             
         
