@@ -59,6 +59,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'config.urls'
 
+
+REST_FRAMEWORK = {
+    'DATETIME_FORMAT': "%Y-%m-%d %H:%M:%S.%f%z", 
+}
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -115,7 +121,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-es'
 
 TIME_ZONE = 'UTC'
 
@@ -132,10 +138,6 @@ USE_TZ = False
 STATIC_URL = '/static/'
 
 CORS_ALLOW_ALL_ORIGINS = True
-# CORS_ORIGIN_ALLOW_ALL = True
-# CORS_ALLOWED_ORIGINS = [
-#     'http://localhost:4200'
-#     ]
 CORS_ALLOW_METHODS = ['DELETE','GET','POST','PUT']
 CORS_ALLOW_HEADERS = [
     "accept",

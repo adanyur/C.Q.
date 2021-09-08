@@ -17,5 +17,3 @@ def soap_api_view(request,pk):
                 ProgramacionSOAP_serializer = ProgramacionSOAPSerializer(data,many=True)
                 return Response(ProgramacionSOAP_serializer.data)
             return Response({"message":"No hay programacion para la fecha seleccionada"})
-            
-        

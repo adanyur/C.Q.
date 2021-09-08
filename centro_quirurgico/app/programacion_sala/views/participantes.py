@@ -7,7 +7,7 @@ from ..serializers.participantes import *
 
 
 @api_view(['GET'])
-def participantes_api_view(request,pk):
+def participantes_api_view(request, pk):
     if request.method == 'GET':
         participantes = ParticipantesModel.objects.all().filter(cq_codiqx = pk)
         participantes_serializers = ParticipantesSerializers(participantes,many=True)  
