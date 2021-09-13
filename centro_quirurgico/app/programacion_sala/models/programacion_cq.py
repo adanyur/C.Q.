@@ -34,7 +34,7 @@ class ProgramacionModel(models.Model):
     cq_fecha_mod_est = models.DateTimeField(auto_now_add=True,null=True, blank=True)
     cq_orden_rqx = models.CharField(max_length=1,default='0',null=True, blank=True)
     cq_numsema = models.CharField(max_length=10,null=True, blank=True)
-    cq_areapre = models.CharField(max_length=2,null=True, blank=True)
+    cq_areapre = models.CharField(default='SD',max_length=2,null=True, blank=True)
     cq_codiqx2 = models.CharField(max_length=6,null=True, blank=True)
     cq_estd_suspendida = models.CharField(max_length=1,null=True, blank=True)
     cq_es_adelan = models.CharField(max_length=1,default='0',null=True, blank=True)

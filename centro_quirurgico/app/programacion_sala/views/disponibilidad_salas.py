@@ -10,6 +10,6 @@ from ..serializers.disponibilidad_salas import *
 def disponibilidad_salas_api_view(request,sala,fecha):
         if request.method == 'GET':
             print({sala,fecha})
-            disponibilidad_sala = DisponibilidadSalas.objects.raw("SELECT * FROM cq_c_disponibilidad_salas('{0}','{1}')".format(fecha,sala))
+            disponibilidad_sala = DisponibilidadSalas.objects.raw("SELECT * FROM cq_c_disponibilidad_salas('{1}','{0}')".format(fecha,sala))
             disponibilidad_serializers = DisponibilidadSalasSerializer(disponibilidad_sala,many=True)
             return Response(disponibilidad_serializers.data)
