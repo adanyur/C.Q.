@@ -1,10 +1,9 @@
 from django.db import models
 
-
 class ProgramacionModel(models.Model):
     cq_numope = models.CharField(primary_key=True,max_length=10)
     sa_codsal = models.CharField(max_length=2,null=True, blank=True)
-    cq_fecha  = models.DateTimeField(null=True, blank=True)
+    cq_fecha  = models.DateField(null=True, blank=True)
     cq_hoinpr = models.DateTimeField(null=True, blank=True)
     cq_hofipr = models.DateTimeField(null=True, blank=True)
     cq_indrep = models.CharField(max_length=1,default='0',null=True, blank=True)
@@ -56,14 +55,14 @@ class ProgramacionModel(models.Model):
 
 class ProgramacionParticipantesModel(models.Model):
     id = models.AutoField(primary_key=True)
+    cq_codpar = models.CharField(max_length=2)
     sa_codsal = models.CharField(max_length=2, null=True, blank=True)
     cq_numero = models.CharField(max_length=2)
-    cq_codpar = models.CharField(max_length=2, null=True, blank=True)
     se_codigo = models.CharField(max_length=3, null=True, blank=True)
     cq_codiqx = models.CharField(max_length=6, null=True, blank=True)
     ar_codare = models.CharField(max_length=2, null=True, blank=True)
     pl_codper = models.CharField(max_length=8, null=True, blank=True)
-    cq_estado = models.CharField(max_length=1, null=True, blank=True)
+    cq_estado = models.CharField(default='1',max_length=1, null=True, blank=True)
     cq_observ = models.CharField(max_length=100,null=True, blank=True)
     cq_numope = models.ForeignKey(ProgramacionModel, related_name='participantes', on_delete=models.CASCADE, db_column='cq_numope',null=True, blank=True)
 

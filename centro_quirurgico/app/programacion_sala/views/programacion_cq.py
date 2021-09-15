@@ -1,5 +1,6 @@
 from django.db.models import Max
 #
+from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
@@ -15,14 +16,13 @@ def programaciones_api_view(request):
     #Se genera el correlativo de numero de operacion
     numeroOperacion = str(int(data['cq_numope']) + 1).rjust(10,'0')
     if request.method == 'POST':
-        print(request.data)
         request.data['cq_numope'] = numeroOperacion
         for data in request.data['participantes']:
             data['sa_codsal']=request.data['sa_codsal']          
         serializer = ProgramacionSerializer(data = request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response({'message':'Se registro correctamente!!'})
+            return Response({'message':'Se registro correctamente!!'},status=status.HTTP_201_CREATED)
         return Response(serializer.errors)
 
 

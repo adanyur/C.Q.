@@ -1,11 +1,13 @@
 from rest_framework import serializers
 from ..models.programacion_cq import *
 
+
 class ProgramacionDetalleSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProgramacionParticipantesModel
-        fields = '__all__'
+        fields ='__all__'
         extra_kwargs = {'id': {'validators': []},}
+
 
 
 class EquiposMedicosSerializer(serializers.ModelSerializer):
@@ -15,10 +17,10 @@ class EquiposMedicosSerializer(serializers.ModelSerializer):
         extra_kwargs = {'id': {'validators': []},}
 
 
+
 class ProgramacionSerializer(serializers.ModelSerializer):
     participantes = ProgramacionDetalleSerializer(many=True)
     equiposMedicos = EquiposMedicosSerializer(many=True)
-
     class Meta:
         model = ProgramacionModel
         fields = (
