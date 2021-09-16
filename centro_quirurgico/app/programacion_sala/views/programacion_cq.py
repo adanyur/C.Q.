@@ -18,18 +18,17 @@ def programaciones_api_view(request):
     if request.method == 'POST':
         request.data['cq_numope'] = numeroOperacion
         for data in request.data['participantes']:
-            data['sa_codsal']=request.data['sa_codsal']          
+            data['sa_codsal'] = request.data['sa_codsal']
         serializer = ProgramacionSerializer(data = request.data)
         if serializer.is_valid():
             serializer.save()
             return Response({'message':'Se registro correctamente!!'},status=status.HTTP_201_CREATED)
-        return Response(serializer.errors)
+        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET','PUT'])
 def programacion_detalle_api_view(request,pk):
     programacion_data = ProgramacionModel.objects.filter(cq_numope=pk).first()
-
     if programacion_data :
         if request.method == 'GET':
             programacion_serializer = ProgramacionSerializer(programacion_data)            
@@ -39,5 +38,5 @@ def programacion_detalle_api_view(request,pk):
             if programacion_serializer.is_valid():
                 programacion_serializer.save()
                 return Response({'message':'Se actualizo correctamente!!'})
-            return Response(programacion_serializer.errors)
+            return Response(programacion_serializer.errors,status=status.HTTP_400_BAD_REQUEST)
     return Response({'message':'No se encontro datos'})

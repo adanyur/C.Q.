@@ -21,6 +21,7 @@ class EquiposMedicosSerializer(serializers.ModelSerializer):
 class ProgramacionSerializer(serializers.ModelSerializer):
     participantes = ProgramacionDetalleSerializer(many=True)
     equiposMedicos = EquiposMedicosSerializer(many=True)
+    cq_fecha =      serializers.DateTimeField(format="%Y-%m-%d")
     class Meta:
         model = ProgramacionModel
         fields = (
