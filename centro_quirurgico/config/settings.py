@@ -41,9 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'rest_framework',
+    'django_filters',
     #
     'app.agenda_soap',
-    'app.programacion_sala'
+    'app.programacion_sala',
+    'app.historia'
 ]
 
 MIDDLEWARE = [
