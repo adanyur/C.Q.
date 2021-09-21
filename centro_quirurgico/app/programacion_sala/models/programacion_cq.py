@@ -3,7 +3,7 @@ from django.db import models
 class ProgramacionModel(models.Model):
     cq_numope = models.CharField(primary_key=True,max_length=10)
     sa_codsal = models.CharField(max_length=2,null=True, blank=True)
-    cq_fecha  = models.DateField(null=True, blank=True)
+    cq_fecha  = models.DateTimeField(null=True, blank=True)
     cq_hoinpr = models.DateTimeField(null=True, blank=True)
     cq_hofipr = models.DateTimeField(null=True, blank=True)
     cq_indrep = models.CharField(max_length=1,default='0',null=True, blank=True)

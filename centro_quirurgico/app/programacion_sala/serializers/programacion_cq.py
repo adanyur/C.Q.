@@ -62,11 +62,55 @@ class ProgramacionSerializer(serializers.ModelSerializer):
         equiposMedicos = validated_data.pop('equiposMedicos')
         equiposMedicos_queryset = (instance.equiposMedicos).all()
 
+
+
         ''' Programacion '''
         #Actualiza la programacion
-        instance.cq_numope = validated_data.get('cq_numope', instance.cq_numope)
-        instance.sa_codsal = validated_data.get('sa_codsal', instance.sa_codsal)
-        instance.cq_estancia = validated_data.get('cq_estancia', instance.cq_estancia)
+        instance.cq_numope=validated_data.get('cq_numope',instance.cq_numope)
+        instance.sa_codsal=validated_data.get('sa_codsal',instance.sa_codsal)
+        instance.cq_fecha=validated_data.get('cq_fecha',instance.cq_fecha)
+        instance.cq_hoinpr=validated_data.get('cq_hoinpr',instance.cq_hoinpr)
+        instance.cq_hofipr=validated_data.get('cq_hofipr',instance.cq_hofipr)
+        instance.cq_indrep=validated_data.get('cq_indrep',instance.cq_indrep)
+        instance.cq_hoinre=validated_data.get('cq_hoinre',instance.cq_hoinre)
+        instance.cq_hofire=validated_data.get('cq_hofire',instance.cq_hofire)
+        instance.cq_hoinej=validated_data.get('cq_hoinej',instance.cq_hoinej)
+        instance.cq_hofiej=validated_data.get('cq_hofiej',instance.cq_hofiej)
+        instance.se_codigo=validated_data.get('se_codigo',instance.se_codigo)
+        instance.cq_codiqx=validated_data.get('cq_codiqx',instance.cq_codiqx)
+        instance.an_tipane=validated_data.get('an_tipane',instance.cq_codiqx)
+        instance.cq_cuenta=validated_data.get('cq_cuenta',instance.cq_cuenta)
+        instance.cq_numhis=validated_data.get('cq_numhis',instance.cq_numhis)
+        instance.cq_tipcon=validated_data.get('cq_tipcon',instance.cq_tipcon)
+        instance.cq_cama=validated_data.get('cq_cama',instance.cq_cama)
+        instance.cq_estado=validated_data.get('cq_estado',instance.cq_estado)
+        instance.cq_indfac=validated_data.get('cq_indfac',instance.cq_indfac)
+        instance.cq_paciente=validated_data.get('cq_paciente',instance.cq_paciente)
+        instance.cq_pedido=validated_data.get('cq_pedido',instance.cq_pedido)
+        instance.cq_usuario=validated_data.get('cq_usuario',instance.cq_usuario)
+        instance.cq_fecpro=validated_data.get('cq_fecpro',instance.cq_fecpro)
+        instance.cq_edad=validated_data.get('cq_edad',instance.cq_edad)
+        instance.cq_glosa_repro=validated_data.get('cq_glosa_repro',instance.cq_glosa_repro)
+        instance.cq_num_petito=validated_data.get('cq_num_petito',instance.cq_num_petito)
+        instance.cq_es_emer=validated_data.get('cq_es_emer',instance.cq_es_emer)
+        instance.cq_orden_cq=validated_data.get('cq_orden_cq',instance.cq_orden_cq)
+        instance.cq_usua_mod_est=validated_data.get('cq_usua_mod_est',instance.cq_usua_mod_est)
+        instance.cq_fecha_mod_est=validated_data.get('cq_fecha_mod_est',instance.cq_fecha_mod_est)
+        instance.cq_orden_rqx=validated_data.get('cq_orden_rqx',instance.cq_orden_rqx)
+        instance.cq_numsema=validated_data.get('cq_numsema',instance.cq_numsema)
+        instance.cq_areapre=validated_data.get('cq_areapre',instance.cq_areapre)
+        instance.cq_codiqx2=validated_data.get('cq_codiqx2',instance.cq_codiqx2)
+        instance.cq_estd_suspendida=validated_data.get('cq_estd_suspendida',instance.cq_estd_suspendida)
+        instance.cq_es_adelan=validated_data.get('cq_es_adelan',instance.cq_es_adelan)
+        instance.cq_enfer=validated_data.get('cq_enfer',instance.cq_enfer)
+        instance.cq_antibio=validated_data.get('cq_antibio',instance.cq_antibio)
+        instance.cq_kg=validated_data.get('cq_kg',instance.cq_kg)
+        instance.cq_btb=validated_data.get('cq_btb',instance.cq_btb)
+        instance.cq_reing=validated_data.get('cq_reing',instance.cq_reing)
+        instance.cq_estancia=validated_data.get('cq_estancia',instance.cq_estancia)
+        instance.cq_codiqx3=validated_data.get('cq_codiqx3',instance.cq_codiqx3)
+        instance.cq_motivo_suspen=validated_data.get('cq_motivo_suspen',instance.cq_motivo_suspen)
+        instance.cq_hg=validated_data.get('cq_hg',instance.cq_hg)
         instance.save()
         
         ''' Equipos medicos '''
@@ -75,19 +119,10 @@ class ProgramacionSerializer(serializers.ModelSerializer):
         for equiposMedicos in equiposMedicos:
             ProgramacionEquiposMedicosModel.objects.create(**equiposMedicos)
 
-
         ''' Participantes'''
+        #Elimina todo el detale de equipos medicos
+        participantes_queryset.delete()
         #Actualiza a los participantes
         for participantes in participantes:
-            keys = detalleDeParticipantes.pop(0)
-            keys.cq_numope = participantes.get('cq_numope',keys.cq_numope)
-            keys.sa_codsal = participantes.get('sa_codsal',keys.sa_codsal)
-            keys.se_codigo = participantes.get('se_codigo',keys.se_codigo)
-            keys.cq_codiqx = participantes.get('cq_codiqx',keys.cq_codiqx)
-            keys.ar_codare = participantes.get('ar_codare',keys.ar_codare)
-            keys.pl_codper = participantes.get('pl_codper',keys.pl_codper)
-            keys.cq_estado = participantes.get('cq_estado',keys.cq_estado)
-            keys.cq_observ = participantes.get('cq_observ',keys.cq_observ) 
-            keys.save()
-
+            ProgramacionParticipantesModel.objects.create(**participantes)
         return instance
