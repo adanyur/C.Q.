@@ -13,3 +13,4 @@ def participantes_api_view(request, pk):
         participantes_serializers = ParticipantesSerializers(participantes,many=True)  
         return Response(participantes_serializers.data)
 
+
