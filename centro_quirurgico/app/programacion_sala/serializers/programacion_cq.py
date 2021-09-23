@@ -5,7 +5,7 @@ from ..models.programacion_cq import *
 class ProgramacionDetalleSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProgramacionParticipantesModel
-        fields =('cq_codiqx' ,'cq_numero' ,'cq_codpar' ,'pl_codper' ,'sa_codsal')
+        fields ='__all__'
         extra_kwargs = {'id': {'validators': []},}
 
 
