@@ -1,7 +1,5 @@
 from django.db import models
 
-
-
 class ParticipantesModel(models.Model):
     cq_codpar   = models.CharField(primary_key=True,max_length=2)
     cq_codiqx	= models.CharField(max_length=6)

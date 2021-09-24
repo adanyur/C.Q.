@@ -12,3 +12,12 @@ class HistoriaSearch(generics.ListAPIView):
     serializer_class = HistoriaSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ['hc_numhis', 'hc_apepat','hc_apemat','hc_nombre','hc_sexo']
+
+
+
+@api_view(['GET'])
+def historias_api_view(request,pk):
+    if request.method == 'GET':
+        queryset = Historia.objects.filter(hc_numhis=pk).first()
+        historia_serializer = HistoriaSerializer(queryset)
+        return Response(historia_serializer.data)
