@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     #
+    'app.informe_operatorio',
     'app.agenda_soap',
     'app.programacion_sala',
     'app.historia'

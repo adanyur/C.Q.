@@ -19,6 +19,7 @@ def programaciones_api_view(request):
         request.data['cq_numope'] = numeroOperacion
         for data in request.data['participantes']:
             data['sa_codsal'] = request.data['sa_codsal']
+            data['se_codigo'] = request.data['se_codigo']
         serializer = ProgramacionSerializer(data = request.data)
         if serializer.is_valid():
             serializer.save()

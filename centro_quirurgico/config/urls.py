@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^',include('app.agenda_soap.urls')),
     url(r'^',include('app.programacion_sala.urls')),
     url(r'^',include('app.historia.urls')),
+    url(r'^',include('app.informe_operatorio.urls')),
 ]

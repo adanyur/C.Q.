@@ -14,3 +14,14 @@ class Historia(models.Model):
     class Meta:
         managed = False
         db_table = 'historias'
+        ordering = ['hc_numhis']
+
+
+class Cie10(models.Model):
+    codigo = models.CharField(max_length=6,primary_key=True)
+    descripcion = models.CharField(max_length=230)
+
+    class Meta:
+        managed = False
+        db_table = 'cie10'
+        ordering = ['codigo']

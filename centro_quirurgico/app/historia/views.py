@@ -14,6 +14,13 @@ class HistoriaSearch(generics.ListAPIView):
     search_fields = ['hc_numhis', 'hc_apepat','hc_apemat','hc_nombre','hc_sexo']
 
 
+class Cie10Search(generics.ListAPIView):
+    queryset = Cie10.objects.all()
+    serializer_class = Cie10Serializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['codigo', 'descripcion']
+
+
 
 @api_view(['GET'])
 def historias_api_view(request,pk):

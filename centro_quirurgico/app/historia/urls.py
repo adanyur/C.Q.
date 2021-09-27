@@ -4,5 +4,6 @@ from .views import *
 
 urlpatterns = [    
     path('searchpaciente',HistoriaSearch.as_view()),
+    path('searchcie',Cie10Search.as_view()),
     url(r'^historia/(?P<pk>\d+)/$',historias_api_view)
 ]
