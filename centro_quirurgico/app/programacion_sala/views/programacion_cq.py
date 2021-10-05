@@ -9,6 +9,13 @@ from ..models.programacion_cq import *
 from ..serializers.programacion_cq import *
 
 
+def getProgramacion(numeroDeProgramacion):
+    return ProgramacionModel.objects.filter(cq_numope=numeroDeProgramacion).first()
+
+def getProgramacionParticipacion(numeroDeProgramacion):
+    return ProgramacionParticipantesModel.objects.filter(cq_numope=numeroDeProgramacion).count()
+
+
 @api_view(['POST'])
 def programaciones_api_view(request):
     #Se obtiene el maximo numero de operacion
@@ -29,17 +36,38 @@ def programaciones_api_view(request):
 
 @api_view(['GET','PUT'])
 def programacion_detalle_api_view(request,pk):
-    programacion_data = ProgramacionModel.objects.filter(cq_numope=pk).first()
+    programacion_data = getProgramacion(pk)
     if programacion_data :
         if request.method == 'GET':
             programacion_serializer = ProgramacionSerializer(programacion_data)            
             return Response(programacion_serializer.data,status=status.HTTP_200_OK)
+
         if request.method == 'PUT':
             for data in request.data['participantes']:
                 data['sa_codsal'] = request.data['sa_codsal']
                 data['cq_numope'] = request.data['cq_numope']
                 data['se_codigo'] = request.data['se_codigo']
             programacion_serializer = ProgramacionSerializer(programacion_data,data = request.data)
+            if programacion_serializer.is_valid():
+                programacion_serializer.save()
+                return Response({'message':'Se actualizo correctamente!!'},status=status.HTTP_200_OK)
+            return Response(programacion_serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+    return Response({'message':'No se encontro datos'},status=status.HTTP_400_BAD_REQUEST)
+
+
+
+@api_view(['PUT'])
+def reprogramacion_api_view(request,pk):   
+    programacion_data = getProgramacion(pk)
+    # request.data['participantes']=[]
+    # data = getProgramacionParticipacion(pk)
+    # for x in range(data):
+    #     request.data['participantes'].append({'sa_codsal':request.data['sa_codsal'],'cq_numope':request.data['sa_codsal']})
+    # print(request.data) 
+
+    if programacion_data:
+        if request.method == 'PUT':
+            programacion_serializer = ProgramacionReprogramacionSerializer(programacion_data,data = request.data)
             if programacion_serializer.is_valid():
                 programacion_serializer.save()
                 return Response({'message':'Se actualizo correctamente!!'},status=status.HTTP_200_OK)

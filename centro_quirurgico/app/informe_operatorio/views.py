@@ -14,7 +14,6 @@ def informe_operatorio_api_view(request):
     if request.method == 'POST':
         if validacionDeInforme(request.data['cq_numope']):
             return Response({'message':'EL Informe Operatorio ya esta registrado'},status=status.HTTP_400_BAD_REQUEST)
-       
         serializer = InformeOperatorioSerializers(data=request.data)
         if serializer.is_valid():
             serializer.save()

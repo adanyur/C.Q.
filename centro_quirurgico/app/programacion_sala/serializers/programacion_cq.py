@@ -17,6 +17,12 @@ class EquiposMedicosSerializer(serializers.ModelSerializer):
         extra_kwargs = {'id': {'validators': []},}
 
 
+class ProgramacionReprogramacionSerializer(serializers.ModelSerializer):
+    participantes = ProgramacionDetalleSerializer(many=True)
+    class Meta:
+        model = ProgramacionModel
+        fields =('cq_numope', 'sa_codsal', 'cq_fecha','participantes')
+
 
 class ProgramacionSerializer(serializers.ModelSerializer):
     participantes = ProgramacionDetalleSerializer(many=True)
@@ -24,16 +30,14 @@ class ProgramacionSerializer(serializers.ModelSerializer):
     cq_fecha =      serializers.DateTimeField(format="%Y-%m-%d")
     class Meta:
         model = ProgramacionModel
-        fields = (
-                'cq_numope', 'sa_codsal', 'cq_fecha', 'cq_hoinpr', 'cq_hofipr', 'cq_indrep', 'cq_hoinre', 
+        fields = ('cq_numope', 'sa_codsal', 'cq_fecha', 'cq_hoinpr', 'cq_hofipr', 'cq_indrep', 'cq_hoinre', 
                 'cq_hofire', 'cq_hoinej', 'cq_hofiej', 'se_codigo', 'cq_codiqx', 'an_tipane', 'cq_cuenta', 
                 'cq_numhis', 'cq_tipcon', 'cq_cama', 'cq_estado', 'cq_indfac', 'cq_paciente', 'cq_pedido', 
                 'cq_usuario', 'cq_fecpro', 'cq_edad', 'cq_glosa_repro', 'cq_num_petito', 'cq_es_emer', 
                 'cq_orden_cq', 'cq_usua_mod_est', 'cq_fecha_mod_est', 'cq_orden_rqx', 'cq_numsema', 
                 'cq_areapre', 'cq_codiqx2', 'cq_estd_suspendida', 'cq_es_adelan', 'cq_enfer', 'cq_antibio', 
                 'cq_kg', 'cq_btb', 'cq_reing', 'cq_estancia', 'cq_codiqx3', 'cq_motivo_suspen', 'cq_hg',
-                'equiposMedicos','participantes'
-                 )
+                'equiposMedicos','participantes')
 
     #create
     def create(self, validated_data):
@@ -122,7 +126,6 @@ class ProgramacionSerializer(serializers.ModelSerializer):
         ''' Participantes'''
         #Elimina todo el detale de equipos medicos
         participantes_queryset.delete()
-        #Actualiza a los participantes
         for participantes in participantes:
             ProgramacionParticipantesModel.objects.create(**participantes)
         return instance

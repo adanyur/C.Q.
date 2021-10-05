@@ -21,3 +21,4 @@ class ProgramacionSOAP(models.Model):
     cq_estado = models.CharField(max_length=1)
     edad = models.IntegerField()
     semanas = models.CharField(max_length=10)
+    tiempo = models.IntegerField()
