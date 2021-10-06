@@ -53,23 +53,3 @@ def programacion_detalle_api_view(request,pk):
                 return Response({'message':'Se actualizo correctamente!!'},status=status.HTTP_200_OK)
             return Response(programacion_serializer.errors,status=status.HTTP_400_BAD_REQUEST)
     return Response({'message':'No se encontro datos'},status=status.HTTP_400_BAD_REQUEST)
-
-
-
-@api_view(['PUT'])
-def reprogramacion_api_view(request,pk):   
-    programacion_data = getProgramacion(pk)
-    # request.data['participantes']=[]
-    # data = getProgramacionParticipacion(pk)
-    # for x in range(data):
-    #     request.data['participantes'].append({'sa_codsal':request.data['sa_codsal'],'cq_numope':request.data['sa_codsal']})
-    # print(request.data) 
-
-    if programacion_data:
-        if request.method == 'PUT':
-            programacion_serializer = ProgramacionReprogramacionSerializer(programacion_data,data = request.data)
-            if programacion_serializer.is_valid():
-                programacion_serializer.save()
-                return Response({'message':'Se actualizo correctamente!!'},status=status.HTTP_200_OK)
-            return Response(programacion_serializer.errors,status=status.HTTP_400_BAD_REQUEST)
-    return Response({'message':'No se encontro datos'},status=status.HTTP_400_BAD_REQUEST)

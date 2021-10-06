@@ -6,7 +6,7 @@ class ProgramacionModel(models.Model):
     cq_fecha  = models.DateTimeField(null=True, blank=True)
     cq_hoinpr = models.DateTimeField(null=True, blank=True)
     cq_hofipr = models.DateTimeField(null=True, blank=True)
-    cq_indrep = models.CharField(max_length=1,default='0',null=True, blank=True)
+    cq_indrep = models.CharField(max_length=1,null=True, blank=True)
     cq_hoinre = models.DateTimeField(null=True, blank=True)
     cq_hofire = models.DateTimeField(null=True, blank=True)
     cq_hoinej = models.DateTimeField(null=True, blank=True)

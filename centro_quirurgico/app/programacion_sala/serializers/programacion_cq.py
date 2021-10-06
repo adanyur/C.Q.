@@ -17,13 +17,6 @@ class EquiposMedicosSerializer(serializers.ModelSerializer):
         extra_kwargs = {'id': {'validators': []},}
 
 
-class ProgramacionReprogramacionSerializer(serializers.ModelSerializer):
-    participantes = ProgramacionDetalleSerializer(many=True)
-    class Meta:
-        model = ProgramacionModel
-        fields =('cq_numope', 'sa_codsal', 'cq_fecha','participantes')
-
-
 class ProgramacionSerializer(serializers.ModelSerializer):
     participantes = ProgramacionDetalleSerializer(many=True)
     equiposMedicos = EquiposMedicosSerializer(many=True)
