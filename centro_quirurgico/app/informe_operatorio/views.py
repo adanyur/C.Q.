@@ -20,3 +20,19 @@ def informe_operatorio_api_view(request):
             return Response({'message':'Se registro correctamente!!'},status=status.HTTP_201_CREATED)
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
         
+
+@api_view(['GET','PUT'])
+def informe_operatorio_detalle_api_view(request,pk):
+        informeOperatorio_data = InformeOperatorio.objects.filter(cq_numope=pk).first()
+        if informeOperatorio_data:
+            if request.method == 'GET':
+                serializer = InformeOperatorioSerializers(informeOperatorio_data)
+                return Response(serializer.data)
+                
+            if request.method == 'PUT':
+                informeOperatorio_serializer = InformeOperatorioSerializers(informeOperatorio_data,data=request.data)
+                if informeOperatorio_serializer.is_valid():
+                    informeOperatorio_serializer.save()
+                    return Response({'message':'Se actualizo correctamente'})
+        return Response({'message':'No se encontro datos'},status=status.HTTP_400_BAD_REQUEST)
+

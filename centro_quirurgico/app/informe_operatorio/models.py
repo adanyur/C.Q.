@@ -3,7 +3,6 @@ from django.db import models
 # Create your models here.
 
 class InformeOperatorio(models.Model):
-    # id = models.AutoField(primary_key=True)
     cq_numope = models.CharField(primary_key=True,max_length=10)
     sa_codsal = models.CharField(max_length=2)
     cq_diag_procedimientos = models.CharField(max_length=400)

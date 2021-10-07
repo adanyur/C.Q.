@@ -11,7 +11,7 @@ class HistoriaSearch(generics.ListAPIView):
     queryset = Historia.objects.all().filter(hc_estadoreg='1',hc_estado='00000001')
     serializer_class = HistoriaSerializer
     filter_backends = [filters.SearchFilter]
-    search_fields = ['hc_numhis', 'hc_apepat','hc_apemat','hc_nombre','hc_sexo']
+    search_fields = ['hc_numhis', 'hc_apepat','hc_apemat','hc_nombre']
 
 
 class Cie10Search(generics.ListAPIView):
