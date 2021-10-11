@@ -18,7 +18,7 @@ class ProgramacionModel(models.Model):
     cq_numhis = models.CharField(max_length=10,null=True, blank=True)
     cq_tipcon = models.CharField(max_length=5,null=True, blank=True)
     cq_cama   = models.CharField(max_length=6,null=True, blank=True)
-    cq_estado = models.CharField(max_length=1, default='1',null=True, blank=True)
+    cq_estado = models.CharField(max_length=1,null=True, blank=True)
     cq_indfac = models.CharField(max_length=1, default='0',null=True, blank=True)
     cq_paciente = models.CharField(max_length=99,null=True, blank=True)
     cq_pedido = models.CharField(max_length=199,null=True, blank=True)

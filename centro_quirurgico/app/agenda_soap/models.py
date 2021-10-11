@@ -22,3 +22,4 @@ class ProgramacionSOAP(models.Model):
     edad = models.IntegerField()
     semanas = models.CharField(max_length=10)
     tiempo = models.IntegerField()
+    inf_ope = models.BooleanField()
