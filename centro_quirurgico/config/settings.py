@@ -25,10 +25,6 @@ SECRET_KEY = 'axq91$=5j91ve=sa3r_43g9m(s95rl#@q0cetbvo)9u+z0pg#v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
-#ALLOWED_HOSTS = []
-
-
 # Application definition
 
 
@@ -50,10 +46,11 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+
+	"corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    "corsheaders.middleware.CorsMiddleware",
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -124,7 +121,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-es'
+LANGUAGE_CODE = 'es-pe'
 
 TIME_ZONE = 'UTC'
 
@@ -140,16 +137,9 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 
-CORS_ALLOW_ALL_ORIGINS = True
+ALLOWED_HOSTS=['*']
+#CORS_ORIGIN_ALLOW_ALL = False
+#CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_ALL_ORIGINS= True
 CORS_ALLOW_METHODS = ['DELETE','GET','POST','PUT']
-CORS_ALLOW_HEADERS = [
-    "accept",
-    "accept-encoding",
-    "authorization",
-    "content-type",
-    "dnt",
-    "origin",
-    "user-agent",
-    "x-csrftoken",
-    "x-requested-with",
-]
+#CORS_ALLOWED_ORIGINS = ["http://192.168.10.139:4200",]

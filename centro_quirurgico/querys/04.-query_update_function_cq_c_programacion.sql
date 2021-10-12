@@ -66,7 +66,8 @@ BEGIN
 	left outer join camas_hosp ch on p.cq_cama=ch.ch_codigo,
 	LATERAL(SELECT cq_tiempo AS tiempo FROM intervenciones_cq a WHERE a.cq_codiqx=p.cq_codiqx) AS intervencion,
 	LATERAL(SELECT COUNT(*) > 0 AS isInfoOperatorio FROM informe_operatorio b WHERE b.cq_numope =p.cq_numope) AS informeOperatorio
-	where p.cq_estado <> '3' and d.cq_codpar = '01'
+	where p.cq_estd_suspendida IS NULL
+	AND d.cq_codpar = '01'
 	and extract(year from p.cq_hoinpr) = extract(year from to_date(p_fecha,'dd/mm/yyyy'))
 	and extract(month from p.cq_hoinpr) = extract(month from to_date(p_fecha,'dd/mm/yyyy'))
 	and extract(day from p.cq_hoinpr) = extract(day from to_date(p_fecha,'dd/mm/yyyy'))

@@ -23,5 +23,6 @@ class ProgramacionSOAPSerializer(serializers.ModelSerializer):
                 'edad',
                 'semanas',
                 'tiempo',
-                'inf_ope')
+                'inf_ope',
+                'cq_indrep')
         read_only_fields = fields

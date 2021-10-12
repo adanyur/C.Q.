@@ -23,3 +23,4 @@ class ProgramacionSOAP(models.Model):
     semanas = models.CharField(max_length=10)
     tiempo = models.IntegerField()
     inf_ope = models.BooleanField()
+    cq_indrep = models.CharField(max_length=1)
