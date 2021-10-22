@@ -13,6 +13,7 @@ class ProgramacionModel(models.Model):
     cq_hofiej = models.DateTimeField(null=True, blank=True)
     se_codigo = models.CharField(max_length=3,null=True, blank=True)
     cq_codiqx = models.CharField(max_length=6,null=True, blank=True)
+    #cq_codiqx = models.ForeignKey(IntervencionModel,on_delete=models.CASCADE,db_column='cq_codiqx')
     an_tipane = models.CharField(max_length=2,null=True, blank=True)
     cq_cuenta = models.CharField(max_length=10,null=True, blank=True)
     cq_numhis = models.CharField(max_length=10,null=True, blank=True)
@@ -35,6 +36,7 @@ class ProgramacionModel(models.Model):
     cq_numsema = models.CharField(max_length=10,null=True, blank=True)
     cq_areapre = models.CharField(default='SD',max_length=2,null=True, blank=True)
     cq_codiqx2 = models.CharField(max_length=6,null=True, blank=True)
+    # cq_codiqx2 = models.ForeignKey(IntervencionModel,on_delete=models.CASCADE,db_column='cq_codiqx2')
     cq_estd_suspendida = models.CharField(max_length=1,null=True, blank=True)
     cq_es_adelan = models.CharField(max_length=1,default='0',null=True, blank=True)
     cq_enfer = models.CharField(max_length=1,default='0',null=True, blank=True)
@@ -44,14 +46,14 @@ class ProgramacionModel(models.Model):
     cq_reing = models.CharField(max_length=1,default='0',null=True, blank=True)
     cq_estancia = models.CharField(max_length=2,null=True, blank=True)
     cq_codiqx3 = models.CharField(max_length=6,null=True, blank=True)
+    # cq_codiqx3 = models.ForeignKey(IntervencionModel,on_delete=models.CASCADE,db_column='cq_codiqx3')
     cq_motivo_suspen = models.CharField(max_length=200,null=True, blank=True)
     cq_hg = models.CharField(max_length=5,null=True, blank=True)
 
     class Meta:
         managed = False
         db_table = 'programacion_cq'
-
-
+        
 
 class ProgramacionParticipantesModel(models.Model):
     id = models.AutoField(primary_key=True)
@@ -64,6 +66,7 @@ class ProgramacionParticipantesModel(models.Model):
     pl_codper = models.CharField(max_length=8, null=True, blank=True)
     cq_estado = models.CharField(default='1',max_length=1, null=True, blank=True)
     cq_observ = models.CharField(max_length=100,null=True, blank=True)
+    # cq_codpar = models.ForeignKey(Test,on_delete=models.CASCADE,db_column='cq_codpar')
     cq_numope = models.ForeignKey(ProgramacionModel, related_name='participantes', on_delete=models.CASCADE, db_column='cq_numope',null=True, blank=True)
 
     class Meta:

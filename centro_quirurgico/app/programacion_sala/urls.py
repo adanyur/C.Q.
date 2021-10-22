@@ -8,6 +8,9 @@ from .views.personales import *
 from .views.programacion_cq import *
 from .views.participantes import *
 from .views.salas import *
+from .views.programacion_view import *
+
+
 
 urlpatterns = [
     url(r'^anestesia', anestesia_api_view),
@@ -18,5 +21,6 @@ urlpatterns = [
     url(r'^intervencionporcodigo/(?P<pk>\d+)/$', intervencion_codigo_api_view),
     url(r'^programacion/(?P<pk>\d+)/$',programacion_detalle_api_view),
     url(r'^participantes/(?P<pk>\d+)/$',participantes_api_view),
+    url(r'^programacionview/(?P<pk>\d+)/$',programacion_view),
     path('disponibilidadsalas/<str:sala>/<str:fecha>',disponibilidad_salas_api_view)
 ]
