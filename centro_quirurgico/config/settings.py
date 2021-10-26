@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'app.informe_operatorio',
     'app.agenda_soap',
     'app.programacion_sala',
-    'app.historia'
+    'app.historia',
+    'app.F419',
 ]
 
 MIDDLEWARE = [

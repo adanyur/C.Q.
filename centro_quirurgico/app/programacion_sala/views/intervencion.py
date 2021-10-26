@@ -8,7 +8,6 @@ from ..serializers.intervencion import *
 
 @api_view(['GET'])
 def intervencion_api_view(request,pk):
-
      intervencions = Intervencion.objects.all()
      if request.method == 'GET':
          intervencions = intervencions.filter(se_codigo=pk)        

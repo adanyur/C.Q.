@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^',include('app.programacion_sala.urls')),
     url(r'^',include('app.historia.urls')),
     url(r'^',include('app.informe_operatorio.urls')),
+    url(r'^',include('app.F419.urls')),
 ]
