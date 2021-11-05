@@ -12,8 +12,8 @@ def personales_api_view(request):
     if request.method == 'GET':
         personales = Personales.objects.values_list('pl_codper','pl_nombre').annotate(tipo=Value('A',output_field=CharField())).filter(pl_estado='1')
         medicos = Medicos.objects.values_list('me_codigo','me_nombres').annotate(tipo=Value('M',output_field=CharField())).filter(me_estado='A')
-        key=('codigo','nombre','tipo')
-        data=[]
+        key = ('codigo','nombre','tipo')
+        data = []
         for value in personales.union(medicos):
             data.append(dict(zip(key,value)))
         data_serializer = PersonalSerializer(data,many=True)    

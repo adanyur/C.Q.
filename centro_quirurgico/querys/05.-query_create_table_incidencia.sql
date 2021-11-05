@@ -1,23 +1,29 @@
-CREATE TABLE incidencia(
-	id serial PRIMARY KEY,
-	fecha date,
-	historia VARCHAR(10),
-	glosa text,
-	turno char(2)
-	usuario VARCHAR(50)
-	fecha_registro TIMESTAMP,
-	usuario_actualizado VARCHAR(50),
-	fecha_actualizado TIMESTAMP
-)
+CREATE TABLE incidencia (
+	id serial4 NOT NULL,
+	fecha_incidencia date NULL,
+	historia varchar(10) NULL,
+	glosa text NULL,
+	turno bpchar(1) NULL,
+	estado char(1) NOT NULL,
+	reporta_area varchar(50) NOT NULL,
+	usuario_registro varchar(50) NULL,
+	fecha_registro timestamp NULL,
+	usuario_actualizado varchar(50) NULL,
+	fecha_actualizado timestamp NULL,
+	CONSTRAINT incidencia_pkey PRIMARY KEY (id)
+);
 
-CREATE TABLE incidencia_d ( 
-	id serial PRIMARY KEY,
-	id_cabecera integer REFERENCES incidencia (id),
-	tipo char(2),
-	value char(2),
-	fecha_registro TIMESTAMP,
-	usuario varchar(50)
-)
+
+CREATE TABLE public.incidencia_d (
+	id serial4 NOT NULL,
+	idincidencia int4 NULL,
+	tipo int4 NULL,
+	value int4 NULL,
+	usuario_registro varchar(50) NULL,
+	fecha_registro timestamp NULL,
+	CONSTRAINT incidencia_d_pkey PRIMARY KEY (id),
+	CONSTRAINT incidencia_d_idincidencia_fkey FOREIGN KEY (idincidencia) REFERENCES public.incidencia(id)
+);
 
 CREATE TABLE turno(
 	id serial,
