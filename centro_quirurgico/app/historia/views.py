@@ -25,6 +25,6 @@ class Cie10Search(generics.ListAPIView):
 @api_view(['GET'])
 def historias_api_view(request,pk):
     if request.method == 'GET':
-        queryset = Historia.objects.filter(hc_numhis=pk).first()
+        queryset = Historia.objects.filter(hc_numhis=pk.rjust(10, '0')).first()
         historia_serializer = HistoriaSerializer(queryset)
         return Response(historia_serializer.data)

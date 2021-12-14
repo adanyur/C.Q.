@@ -10,12 +10,21 @@ from .serializers import *
 def getIncidencia(idIncidencia):
     return F419Model.objects.filter(id=idIncidencia).first()
 
+def parametsDynamic(paramets):
+
+    PARAMETS_DYNAMIC = {
+        'ADMIN':{'fecha_registro__date':paramets['fecha']},
+        'USUARIO':{'fecha_registro__date':paramets['fecha'],'estado':1}
+    }   
+
+    return PARAMETS_DYNAMIC[paramets['rol']]
 
 
 @api_view(['GET','POST'])
-def incidencia_api_view(request):
+def incidencia_api_view(request,fecha,rol):
     if request.method == 'GET':
-        f419_data = F419Model.objects.all()
+        filters = parametsDynamic(dict(fecha=fecha,rol=rol))
+        f419_data = F419Model.objects.all().filter(**filters)
         f419_serializer = F419Serializer(f419_data,many=True)
         return Response(f419_serializer.data)
 
@@ -52,8 +61,8 @@ def incidencia_chance_status(request,pk):
         f419_serializer = F419StatusSerializer(f419_data,data=request.data)
         if f419_serializer.is_valid():
             f419_serializer.save()
-            return Response({'status':True})
-        return Response(f419_serializer.errors)
+            return Response({'status':True,'message':'Se actualizo correctamente'},status=status.HTTP_200_OK)
+        return Response({'status':False,'erros':f419_serializer.errors})
 
 
 '''VIEWS DE INVOLUCRADOS I/EA'''
@@ -62,6 +71,6 @@ def involucrados_iea_api_view(request):
     if request.method == 'GET':
         involucrados_data = Involucrados.objects.filter(estado=True).all()
         involucrados_serializer = InvolucradosSerializer(involucrados_data,many=True)
-        return Response(involucrados_serializer.data)
+        return Response(involucrados_serializer.data,status=status.HTTP_200_OK)
 
 
